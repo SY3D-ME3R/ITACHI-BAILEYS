@@ -33,9 +33,18 @@ public protocol description (IQ stanza: tag `iq`, xmlns `spam`, to
 Nothing else changed: no auth/creds/session/connection/reconnect/pairing
 code touched, no newsletter code touched, no new dependencies, no preinstall
 scripts, no extra network calls. The only traffic the new code can cause is
-the single report IQ stanza. `package.json` and `WAProto/` are byte-identical
-to rc14. Auth-state format is untouched, so existing sessions load as-is —
-**no re-pairing by design**.
+the single report IQ stanza. `WAProto/` is byte-identical
+to rc14.
+
+**Git-install fix (2026-11-25):** upstream's `package.json` carries
+`"prepare": "npm run build"` (tsc) and `"prepack": "npm run build"`. When
+npm installs a package from a git URL it runs `prepare`, and the build fails
+there (no `src/` in the published tree, no `typescript` installed) — so a
+plain `github:SY3D-ME3R/ITACHI-BAILEYS` install failed on the first try.
+Both scripts are REMOVED in this fork (the only `package.json` difference
+from rc14 besides nothing else); the shipped `lib/` is already built, so
+nothing needs compiling at install time. Verified by a fresh
+`npm install github:SY3D-ME3R/ITACHI-BAILEYS#<sha>` after the removal.
 
 ## How reportSpam works
 
