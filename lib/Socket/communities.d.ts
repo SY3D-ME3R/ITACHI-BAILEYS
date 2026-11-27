@@ -107,6 +107,8 @@ export declare const makeCommunitiesSocket: (config: SocketConfig) => {
     updateMemberLabel: (jid: string, memberLabel: string) => Promise<string>;
     updateMediaMessage: (message: import("../Types/index.js").WAMessage) => Promise<import("../Types/index.js").WAMessage>;
     sendMessage: (jid: string, content: import("../Types/index.js").AnyMessageContent, options?: import("../Types/index.js").MiscMessageGenerationOptions) => Promise<import("../Types/index.js").WAMessage | undefined>;
+    /** ITACHI-BAILEYS ADDITION — send a sound sticker (animated WebP + nested audioMessage); see lib/Socket/messages-send.js. */
+    sendSoundSticker: (jid: string, content: import("../Types/index.js").SoundStickerOptions, options?: import("../Types/index.js").MiscMessageGenerationOptions) => Promise<import("../Types/index.js").WAMessage>;
     newsletterCreate: (name: string, description?: string) => Promise<import("../Types/index.js").NewsletterMetadata>;
     newsletterUpdate: (jid: string, updates: import("../Types/index.js").NewsletterUpdate) => Promise<unknown>;
     newsletterSubscribers: (jid: string) => Promise<{

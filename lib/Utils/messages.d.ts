@@ -21,6 +21,8 @@ export declare const prepareDisappearingMessageSettingContent: (ephemeralExpirat
 export declare const generateForwardMessageContent: (message: WAMessage, forceForward?: boolean) => proto.IMessage;
 export declare const hasNonNullishProperty: <K extends PropertyKey>(message: AnyMessageContent, key: K) => message is ExtractByKey<AnyMessageContent, K>;
 export declare const generateWAMessageContent: (message: AnyMessageContent, options: MessageContentGenerationOptions) => Promise<proto.Message>;
+/** ITACHI-BAILEYS ADDITION — inject a sound-sha256 EXIF chunk into a WebP sticker so WhatsApp plays its audio (see lib/Utils/messages.js). */
+export declare const addSoundSha256ToStickerWebP: (webp: Buffer, soundSha256Hex: string) => Buffer;
 export declare const generateWAMessageFromContent: (jid: string, message: WAMessageContent, options: MessageGenerationOptionsFromContent) => WAMessage;
 export declare const generateWAMessage: (jid: string, content: AnyMessageContent, options: MessageGenerationOptions) => Promise<WAMessage>;
 /** Get the key to access the true type of content */

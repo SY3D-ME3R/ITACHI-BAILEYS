@@ -3500,6 +3500,8 @@ message Message {
         optional bool isLottie = 21;
         optional string accessibilityLabel = 22;
         optional Message.MediaKeyDomain mediaKeyDomain = 23;
+        // ITACHI-BAILEYS (sound sticker): nested audio for a sound sticker (StickerMessage field 26).
+        optional AudioMessage audioMessage = 26;
     }
 
     message StickerPackMessage {

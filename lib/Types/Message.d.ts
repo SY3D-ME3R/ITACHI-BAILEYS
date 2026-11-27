@@ -115,6 +115,25 @@ export type AlbumMessageOptions = {
     /** Number of videos expected in the album */
     expectedVideoCount?: number;
 };
+/**
+ * Options for sending a sound sticker (the `stickerAudio` content
+ * branch / sendSoundSticker socket method — ITACHI-BAILEYS, mechanism
+ * ported from AunuBaileys 2.7.0). The sticker must be a WebP: the branch
+ * writes the SHA-256 of the audio into the WebP EXIF as "sound-sha256"
+ * (the link the receiving client uses to pair sticker and sound) before
+ * uploading. The audio is uploaded as OGG/Opus and attached to the
+ * sticker message as its nested audioMessage (StickerMessage field 26).
+ */
+export type SoundStickerOptions = {
+    /** The sticker image — must resolve to WebP bytes. */
+    sticker: WAMediaUpload;
+    /** The sound — uploaded with mimetype 'audio/ogg; codecs=opus'. */
+    audio: WAMediaUpload;
+    /** Optionally tell the duration of the audio, in seconds. */
+    seconds?: number;
+    /** JIDs to mention via the sticker's contextInfo. */
+    mentions?: string[];
+};
 type SharePhoneNumber = {
     sharePhoneNumber: boolean;
 };
@@ -177,6 +196,9 @@ export type AnyRegularMessageContent = (({
 } & Mentionable & Contextable & Editable) | ({
     album: AlbumMessageOptions;
 } & Contextable & Mentionable) | {
+    /** ITACHI-BAILEYS: send a sound sticker — sticker with a nested audio message */
+    stickerAudio: SoundStickerOptions;
+} | {
     contacts: {
         displayName?: string;
         contacts: proto.Message.IContactMessage[];

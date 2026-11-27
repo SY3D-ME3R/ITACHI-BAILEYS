@@ -38,6 +38,8 @@ export declare const makeMessagesRecvSocket: (config: SocketConfig) => {
     updateMemberLabel: (jid: string, memberLabel: string) => Promise<string>;
     updateMediaMessage: (message: WAMessage) => Promise<WAMessage>;
     sendMessage: (jid: string, content: import("../Types/index.js").AnyMessageContent, options?: import("../Types/index.js").MiscMessageGenerationOptions) => Promise<WAMessage | undefined>;
+    /** ITACHI-BAILEYS ADDITION — send a sound sticker (animated WebP + nested audioMessage); see lib/Socket/messages-send.js. */
+    sendSoundSticker: (jid: string, content: import("../Types/index.js").SoundStickerOptions, options?: import("../Types/index.js").MiscMessageGenerationOptions) => Promise<WAMessage>;
     newsletterCreate: (name: string, description?: string) => Promise<import("../Types/index.js").NewsletterMetadata>;
     newsletterUpdate: (jid: string, updates: import("../Types/index.js").NewsletterUpdate) => Promise<unknown>;
     newsletterSubscribers: (jid: string) => Promise<{

@@ -1,6 +1,6 @@
 import { Boom } from '@hapi/boom';
 import { proto } from '../../WAProto/index.js';
-import type { BotListInfo, CacheStore, ChatModification, MessageUpsertType, ReportSpamOptions, ReportSpamResult, SocketConfig, WABusinessProfile, WAMediaUpload, WAMessage, WAPatchCreate, WAPresence, WAPrivacyCallValue, WAPrivacyGroupAddValue, WAPrivacyMessagesValue, WAPrivacyOnlineValue, WAPrivacyValue, WAReadReceiptsValue } from '../Types/index.js';
+import type { BotListInfo, CacheStore, ChatModification, MessageUpsertType, MiscMessageGenerationOptions, ReportSpamOptions, ReportSpamResult, SocketConfig, SoundStickerOptions, WABusinessProfile, WAMediaUpload, WAMessage, WAPatchCreate, WAPresence, WAPrivacyCallValue, WAPrivacyGroupAddValue, WAPrivacyMessagesValue, WAPrivacyOnlineValue, WAPrivacyValue, WAReadReceiptsValue } from '../Types/index.js';
 import type { QuickReplyAction } from '../Types/Bussines.js';
 import type { LabelActionBody } from '../Types/Label.js';
 import { type BinaryNode } from '../WABinary/index.js';
@@ -54,6 +54,8 @@ export declare const makeChatsSocket: (config: SocketConfig) => {
     updateProfileStatus: (status: string) => Promise<void>;
     updateProfileName: (name: string) => Promise<void>;
     updateBlockStatus: (jid: string, action: "block" | "unblock") => Promise<void>;
+    /** ITACHI-BAILEYS ADDITION — send a sound sticker (animated WebP + nested audioMessage); see lib/Socket/messages-send.js. */
+    sendSoundSticker: (jid: string, content: SoundStickerOptions, options?: MiscMessageGenerationOptions) => Promise<WAMessage>;
     /** CLEAN-BAILEYS ADDITION — report a chat as spam (does not block; see lib/Socket/chats.js). */
     reportSpam: (jid: string, options?: ReportSpamOptions) => Promise<ReportSpamResult>;
     updateDisableLinkPreviewsPrivacy: (isPreviewsDisabled: boolean) => Promise<void>;

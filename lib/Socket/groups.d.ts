@@ -84,6 +84,8 @@ export declare const makeGroupsSocket: (config: SocketConfig) => {
     updateProfileStatus: (status: string) => Promise<void>;
     updateProfileName: (name: string) => Promise<void>;
     updateBlockStatus: (jid: string, action: "block" | "unblock") => Promise<void>;
+    /** ITACHI-BAILEYS ADDITION — send a sound sticker (animated WebP + nested audioMessage); see lib/Socket/messages-send.js. */
+    sendSoundSticker: (jid: string, content: import("../index.js").SoundStickerOptions, options?: import("../index.js").MiscMessageGenerationOptions) => Promise<import("../index.js").WAMessage>;
     /** CLEAN-BAILEYS ADDITION — report a chat as spam (does not block; see lib/Socket/chats.js). */
     reportSpam: (jid: string, options?: import("../index.js").ReportSpamOptions) => Promise<import("../index.js").ReportSpamResult>;
     updateDisableLinkPreviewsPrivacy: (isPreviewsDisabled: boolean) => Promise<void>;

@@ -1,7 +1,7 @@
 import NodeCache from '@cacheable/node-cache';
 import { Boom } from '@hapi/boom';
 import { proto } from '../../WAProto/index.js';
-import type { AnyMessageContent, MediaConnInfo, MessageReceiptType, MessageRelayOptions, MiscMessageGenerationOptions, SocketConfig, WAMessage, WAMessageKey } from '../Types/index.js';
+import type { AnyMessageContent, MediaConnInfo, MessageReceiptType, MessageRelayOptions, MiscMessageGenerationOptions, SocketConfig, SoundStickerOptions, WAMessage, WAMessageKey } from '../Types/index.js';
 import { MessageRetryManager } from '../Utils/index.js';
 import { type BinaryNode, type JidWithDevice } from '../WABinary/index.js';
 import { USyncQuery } from '../WAUSync/index.js';
@@ -34,6 +34,8 @@ export declare const makeMessagesSocket: (config: SocketConfig) => {
     updateMemberLabel: (jid: string, memberLabel: string) => Promise<string>;
     updateMediaMessage: (message: WAMessage) => Promise<WAMessage>;
     sendMessage: (jid: string, content: AnyMessageContent, options?: MiscMessageGenerationOptions) => Promise<WAMessage | undefined>;
+    /** ITACHI-BAILEYS ADDITION — send a sound sticker (animated WebP + nested audioMessage); see lib/Socket/messages-send.js. */
+    sendSoundSticker: (jid: string, content: SoundStickerOptions, options?: MiscMessageGenerationOptions) => Promise<WAMessage>;
     newsletterCreate: (name: string, description?: string) => Promise<import("../Types/index.js").NewsletterMetadata>;
     newsletterUpdate: (jid: string, updates: import("../Types/index.js").NewsletterUpdate) => Promise<unknown>;
     newsletterSubscribers: (jid: string) => Promise<{

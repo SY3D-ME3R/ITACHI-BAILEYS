@@ -52,6 +52,8 @@ export declare const makeBusinessSocket: (config: SocketConfig) => {
     updateMemberLabel: (jid: string, memberLabel: string) => Promise<string>;
     updateMediaMessage: (message: import("../index.js").WAMessage) => Promise<import("../index.js").WAMessage>;
     sendMessage: (jid: string, content: import("../index.js").AnyMessageContent, options?: import("../index.js").MiscMessageGenerationOptions) => Promise<import("../index.js").WAMessage | undefined>;
+    /** ITACHI-BAILEYS ADDITION — send a sound sticker (animated WebP + nested audioMessage); see lib/Socket/messages-send.js. */
+    sendSoundSticker: (jid: string, content: import("../index.js").SoundStickerOptions, options?: import("../index.js").MiscMessageGenerationOptions) => Promise<import("../index.js").WAMessage>;
     newsletterCreate: (name: string, description?: string) => Promise<import("../index.js").NewsletterMetadata>;
     newsletterUpdate: (jid: string, updates: import("../index.js").NewsletterUpdate) => Promise<unknown>;
     newsletterSubscribers: (jid: string) => Promise<{
